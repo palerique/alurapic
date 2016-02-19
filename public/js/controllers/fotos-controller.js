@@ -1,20 +1,21 @@
 angular.module('alurapic')
-    .controller('FotosController', function ($scope) {
+    .controller('FotosController', function ($scope, $http) {
 
 
-        $scope.fotos = [
-            {
-                titulo: 'Placeholder 1',
-                url: 'https://placehold.it/150x150'
-            },
-            {
-                titulo: 'Placeholder 2',
-                url: 'https://placehold.it/150x150'
-            },
-            {
-                titulo: 'Placeholder 3',
-                url: 'https://placehold.it/150x150'
-            }
-        ];
+        $scope.fotos = [];
+
+        $http.get('v1/fotos').success(function (fotos) {
+            $scope.fotos = fotos;
+        }).error(function (erro) {
+            console.log(erro);
+        });
+
+        //var promise = $http.get('v1/fotos');
+        //
+        //promise.then(function (retorno) {
+        //    $scope.fotos = retorno.data;
+        //}).catch(function (erro) {
+        //    console.log(erro);
+        //});
 
     });
