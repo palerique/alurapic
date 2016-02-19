@@ -1,6 +1,6 @@
 var db = require('../../config/database');
 
-var api = {}
+var api = {};
 
 api.adiciona = function(req, res) {
     
@@ -53,6 +53,25 @@ api.remove = function(req, res) {
         if(numRemoved) res.status(200).end();
         res.status(500).end();
     });
+};
+
+api.listaGrupos = function (req, res) {
+
+    res.json([
+        {
+            _id: 1,
+            nome: 'esporte'
+        },
+        {
+            _id: 2,
+            nome: 'lugares',
+        },
+        {
+            _id: 3,
+            nome: 'animais'
+        }
+    ]);
+        
 };
 
 
